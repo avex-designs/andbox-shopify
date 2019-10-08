@@ -1,0 +1,139 @@
+<div class="login">
+  <div class="login-col" style="background-image:url({{section.settings.login-col-bg | img_url:'master'}})">
+  </div>
+  
+  <div class="login-col-2">
+     <div class="login-cred">
+      <h2 class="login-header">Log In</h2>
+       <div class="note form-success" id="ResetSuccess" style="display:none;">
+      {{ 'customer.recover_password.success' | t }}
+      </div>
+
+        {% form 'customer_login' %}
+          {{ form.errors | default_errors }}
+
+        <div class="email-div login-div">
+      	<label class="login-labels" for="CustomerEmail">
+          <input type="email" name="customer[email]" id="CustomerEmail" class="login-inputs input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder=" " autocorrect="off" autocapitalize="off" autofocus>
+            <span class="login-labels-span">Email</span>
+          </label>
+       </div>
+       
+          {% if form.password_needed %}
+           <div class="pw-div login-div">
+             <label class="login-labels" for="CustomerPassword">
+               <input type="password" value="" name="customer[password]" id="CustomerPassword" class="login-inputs input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder=" ">
+                <span class="login-labels-span">Password</span>
+              </label>
+          </div>
+          {% endif %}
+       
+	     <button class="login-btn btn-link" type="submit" style="margin-top:2rem">
+            <span>LOG IN</span>
+       	  </button>
+     
+      {%comment%}
+       	<p id="continue">Or continue with</p>
+       
+       <div class="login-soc">
+         <div class="login-soc-col">
+           <button  class="login-btn btn-link fb-btn" type="submit">
+            <img style="margin-right:15px" src="{{'and-fb.png' | asset_url}}"/>FACEBOOK
+       	  </button>
+           
+          <button id="twitter-btn" class="login-btn btn-link" type="submit" style="margin-top: 1rem;">
+             <img style="margin-right:15px" src="{{'and-twitter.png' | asset_url}}"/>TWITTER
+       	  </button>
+         </div>
+         
+         <div class="login-soc-col">
+           <button id="google-btn" class="login-btn btn-link" type="submit">
+           <img style="margin-right:15px" src="{{'and-google.png' | asset_url}}"/>GOOGLE
+       	  </button>
+           
+           <button id="twitch-btn" class="login-btn btn-link" type="submit" style="margin-top: 1rem;">
+             <img style="margin-right:15px" src="{{'and-twitch.png' | asset_url}}"/>TWITCH
+       	  </button>
+         </div>
+       </div>
+      {%endcomment%}
+       
+       <div class="forgot-pw">
+         <p>New to Andbox? <span class="create-account">{{ 'layout.customer.create_account' | t | customer_register_link }}</span></p>
+          {%comment%}<p><a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a></p>{%endcomment%}
+          {% if form.password_needed %}
+            <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+          {% endif %}
+       </div>
+       
+       
+        {% endform %}
+       
+       
+     <div id="RecoverPasswordForm" style="display: none;">
+
+      <h2>{{ 'customer.recover_password.title' | t }}</h2>
+      <p>{{ 'customer.recover_password.subtext' | t }}</p>
+      <hr class="hr--small">
+
+      <div class="form-vertical">
+        {% form 'recover_customer_password' %}
+
+          {{ form.errors | default_errors }}
+
+          {% comment %}
+            Assign variable to be used after timber.init() is run in theme.liquid
+          {% endcomment %}
+          {% if form.posted_successfully? %}
+            {% assign resetPassword = true %}
+          {% endif %}
+
+          <label for="RecoverEmail" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
+          <input type="email" value="" name="email" id="RecoverEmail" class="input-full" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+
+          <p>
+            <input type="submit" class="btn btn--full" value="{{ 'customer.recover_password.submit' | t }}">
+          </p>
+          <button type="button" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</button>
+        {% endform %}
+      </div>
+
+    </div>
+
+    {% comment %}
+      If accounts are set as optional, the following will be shown as an option
+      during checkout, not on the default /login page.
+    {% endcomment %}
+    {% if shop.checkout.guest_login %}
+      <hr class="hr--clear">
+
+      <h1>{{ 'customer.login.guest_title' | t }}</h1>
+      <hr class="hr--small">
+
+      {% form 'guest_login' %}
+        <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+      {% endform %}
+    {% endif %}
+
+     </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Login",
+    "settings": [
+		{
+			"id": "login-col-bg",
+			"type": "image_picker",
+			"label": "Login Background Image"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

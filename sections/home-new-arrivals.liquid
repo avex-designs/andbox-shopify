@@ -1,0 +1,80 @@
+<section id="new_arrivals_slider_section">
+  
+  <header>
+  	  <h3 class="header_3"> {{ section.settings.section-title }} </h3>
+  </header>
+
+  <div class="slider-container">
+
+    <div id="new-arrivals" class="owl-carousel owl-theme">
+      
+	  {% for product in collections.lookbook.products limit:6 %}
+      
+        {% include 'product-grid-item_slider' %}
+    
+      {% endfor %}
+
+    </div><!-- // # new arrivals lide -->
+    
+    <div class="link-wrapper">
+    	<a href="{{ section.settings.link }}" class="btn-link black"> <span> shop the latest </span> </a>
+    </div>
+
+  </div>
+  
+</section>
+
+<script>
+$(document).ready(function(){
+  
+  $("#new-arrivals").owlCarousel({
+    items: 3,
+    slideBy: 3,
+    loop: true,
+    nav: true,
+    dots: false,
+    margin: 80,
+    navText: ['<span class="hero-prev">Prev</span>','<span class="hero-next">Next</span>'],
+    responsive: {
+      0 : {
+          items: 2,
+          margin: 24
+      },
+      768 : {
+          items : 3,
+          margin: 32
+      },
+      1024 : {
+        margin: 80
+      }
+    }
+
+  });
+  
+});
+</script>
+
+{% schema %}
+  {
+    "name": "New Arrivals Slider",
+    "settings": [
+		{
+          "id": "section-title",
+          "type": "text",
+          "label": "Heading",
+          "default": "Title"
+		},
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Button link"
+        }
+	],
+	"presets": [
+		{
+    		"name": "New Arrivals Slider",
+    		"category": "Products Slider"
+		}
+	]
+  	}
+{% endschema %}

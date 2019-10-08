@@ -1,0 +1,101 @@
+<div class="login">
+  <div class="login-col" style="background-image:url({{section.settings.contact-col-bg | img_url:'master'}})">
+  </div>
+  
+  <div class="login-col-2">
+     <div class="login-cred">
+      <h2 class="login-header">Contact Us</h2>
+          {% form 'contact' %}
+
+            {% comment %}
+              Successful message
+            {% endcomment %}
+            {% if form.posted_successfully? %}
+              <p class="note form-success">
+                {{ 'contact.form.post_success' | t }}
+              </p>
+            {% endif %}
+
+            {{ form.errors | default_errors }}
+       
+       <div class="contact-inputs">
+           
+         <div class="contact-input-col">
+           
+           <div class="contact-input-col-half">
+            <label class="login-labels contact-label">
+             <input type="text" id="ContactFormName" class="login-inputs input-full contact-input" name="contact[name]" placeholder=" " autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+             <span class="contact-label">First Name</span>
+            </label>
+            {%comment%}
+             <label for="ContactFormName" class="hidden-label">{{ 'contact.form.name' | t }}</label>
+            {%endcomment%}
+           </div>
+           
+            <div class="contact-input-col-half">
+              <label class="login-labels contact-label">
+               <input type="text" id="ContactFormName" class="login-inputs input-full contact-input" name="contact[name]" placeholder=" " autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+               <span class="contact-label">Last Name</span>
+              </label>
+             </div>
+           
+         </div>
+         
+          <div class="contact-input-col contact-input-col-mid">
+           <div class="" style="width: 100%">
+              <label class="login-labels contact-label">
+                <input type="email" id="ContactFormEmail" class="login-inputs input-full contact-input" name="contact[email]" placeholder=" " autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+                <span class="contact-label">Email</span>
+              </label>
+           </div>
+            
+            
+          {%comment%}
+		  <div class="contact-input-col-half">
+              <label class="login-labels contact-label">
+               <input type="tel" id="ContactFormPhone" class="login-inputs input-full contact-input" name="contact[phone]" placeholder=" " pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                <span class="contact-label">Phone</span>
+              </label>
+          </div>
+          {%endcomment%}
+         </div>
+            
+            
+            <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}</label>
+            <textarea rows="10" id="ContactFormMessage" class="login-inputs input-full contact-input" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+       </div>
+       
+
+			{%comment%}
+            <input type="submit" class="btn right" value="{{ 'contact.form.send' | t }}">
+			{%endcomment%}
+
+          <button class="login-btn btn-link fb-btn" type="submit" style="margin-top:2rem; width:50%" value="{{ 'contact.form.send' | t }}">
+            <span>SUBMIT</span>
+       	  </button>
+     
+
+          {% endform %}
+  	</div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Contact",
+    "settings": [
+		{
+			"id": "contact-col-bg",
+			"type": "image_picker",
+			"label": "Contact Background Image"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

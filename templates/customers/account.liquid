@@ -1,0 +1,158 @@
+<!-- /templates/customers/account.liquid -->
+{% comment %}
+
+  For all available customer liquid tags:
+    - http://docs.shopify.com/themes/liquid-variables/customer
+
+{% endcomment %}
+
+
+<div class="account">
+  <div class="account-inner">
+    
+    <h3 style="text-align:center" id="my-account">My Account</h3>
+    <div style="text-align:center">{{ 'layout.customer.log_out'| t | customer_logout_link }}</div>
+    
+    <div class="deets-orders-wrap">
+      <div class="deets">
+        <h4 class="table-title">Account Details</h4>
+        
+        <div class="deets-table">
+          <div class="deets-row">
+            
+           	<div class="deets-col">
+              <h6 class="deets-h">Personal Info</h6>
+            </div>
+            
+            <div class="deets-col">
+              <p>{{customer.name}}</p>
+              <p>{{customer.email}}</p>
+            </div>
+          </div> <!-- first deets row --> 
+          
+          <div class="deets-row">
+            <div class="deets-col">
+              <h6 class="deets-h">Address</h6>
+            </div>
+            
+            <div class="deets-col">
+            {{ customer.default_address | format_address }}
+              <p><a href="/account/addresses" class="text-link edit-address">Edit Address</a></p>
+            </div>
+            
+          </div> <!-- second deets row --> 
+          
+        </div>
+      </div>
+      
+      <div class="orders">
+        <h4 class="table-title">Orders</h4>
+        <div class="deets-table">
+        <div class="orders-row">
+          
+          {% for order in customer.orders %}
+             <table class="orders-table">
+             <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+              <tbody>
+              <tr class="table__section">
+                <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'date' }}</td>
+                <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+              </tr>
+               </tbody>
+          </table>
+            {% endfor %}
+          
+          {%comment%}
+            <p>You havent placed any orders yet</p>
+            <a class="btn-link account-shop-btn">Start Shopping</a>
+          {%endcomment%}
+          
+        </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+{%comment%}
+{% paginate customer.orders by 20 %}
+
+<header class="section-header text-center">
+  <h1>{{ 'customer.account.title' | t }}</h1>
+  {{ 'layout.customer.log_out'| t | customer_logout_link }}
+  <hr class="hr--small">
+</header>
+
+<div class="grid">
+
+  <div class="grid__item two-thirds medium-down--one-whole">
+    <h2 class="h3">{{ 'customer.orders.title' | t }}</h2>
+
+    {% comment %}
+      If we have past orders, loop through each one
+    {% endcomment %}
+    {% if customer.orders.size != 0 %}
+
+      <div class="table-wrap">
+        <table class="full table--responsive">
+          <thead>
+            <tr>
+              <th>{{ 'customer.orders.order_number' | t }}</th>
+              <th>{{ 'customer.orders.date' | t }}</th>
+              <th>{{ 'customer.orders.payment_status' | t }}</th>
+              <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+              <th>{{ 'customer.orders.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              <tr class="table__section">
+                <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'date' }}</td>
+                <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="hr--clear">
+
+    {% else %}
+
+      <p>{{ 'customer.orders.none' | t }}</p>
+
+    {% endif %}
+  </div>
+
+  <div class="grid__item one-third medium-down--one-whole">
+    <h3>{{ 'customer.account.details' | t }}</h3>
+
+    {{ customer.default_address | format_address }}
+
+    <p><a href="/account/addresses" class="text-link">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+  </div>
+
+</div>
+
+{% if paginate.pages > 1 %}
+  {% include 'pagination' %}
+{% endif %}
+{% endpaginate %}
+{%endcomment%}

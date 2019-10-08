@@ -1,0 +1,136 @@
+<section id="hero-slider-home">
+  
+  <div id="hero-slideshow" class="owl-carousel owl-theme"> 
+
+    {% assign count = 0 %}
+    {% for block in section.blocks %}
+    {% assign count = count | plus: 1 %}
+    <div class="item {{ block.settings.text_color }}">
+
+      <div class="hero-slide-text-wrapper slide_{{count}} {{ block.settings.text_align }}" style="background-image:url({{ block.settings.image-picker | img_url: 'master' }})">
+        {% if block.settings.image-picker-mobile %}
+        <style>
+        @media screen and (max-width: 1023px) {
+          .hero-slide-text-wrapper.slide_{{count}} {
+              background-image:url("{{ block.settings.image-picker-mobile | img_url: 'master' }}") !important;
+          }
+        }
+        </style>
+        {% endif %}
+        <div class="hero-slide_dark_overlay"></div>
+      
+        <div class="hero-slide-text">
+          
+          <span class="header_7"> {{ block.settings.description }} </span>
+          <h2 class="header_1"> {{ block.settings.title }} </h2>
+          <div class="link-wrapper">
+            {% if block.settings.link %}
+            <a href="{{ block.settings.link }}" class="hero-slide-link btn-link link-blue"> <span>{{ block.settings.linktext }}</span> </a>
+            {% endif %}
+          </div>
+          
+        </div>
+        
+      </div>
+
+    </div>
+    {% endfor %}  
+  </div>
+  
+</section>
+<style>
+div[product-selector] .color-true.collection-color-swatch {
+	margin: 0 !important;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+  
+  $("#hero-slideshow").owlCarousel({
+    items: 1,
+	loop:false,
+    nav:true,
+    autoplay: true,
+    animateOut: 'fadeOut',
+    loop: true,
+	dots: true,
+	navText: ['<span class="hero-prev">Prev</span>','<span class="hero-next">Next</span>'] 
+  });
+  
+
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Hero Slider",
+	"settings": [
+	],
+	"blocks": [
+      {
+        "type": "select",
+        "name": "Add Slide",
+        "settings": [
+          {
+			"id": "description",
+            "type": "text",
+            "label": "Description",
+            "default": "Description Here"
+          },
+		  {
+			"id": "title",
+            "type": "text",
+            "label": "Title",
+            "default": "Default title"
+          },
+          {
+            "id": "linktext",
+            "type": "text",
+            "label": "Button text",
+            "default": "Click here"
+          },
+		  {
+            "id": "link",
+            "type": "url",
+            "label": "Button link"
+          },
+		  {
+            "id": "image-picker",
+            "type": "image_picker",
+            "label": "Background Image"
+          },
+		  {
+            "id": "image-picker-mobile",
+            "type": "image_picker",
+            "label": "Mobile Background Image"
+          }
+        ]
+      }
+    ],
+	"presets": [
+		{
+    		"name": "Hero Slideshow",
+    		"category": "Hero Slideshow",
+			"blocks": [
+              { 
+                "type": "select"
+              }
+            ]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+
+
+{% endstylesheet %}
+
+{% javascript %}
+$(document).ready(function(){
+
+
+
+});
+{% endjavascript %}

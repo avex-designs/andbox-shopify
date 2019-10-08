@@ -1,0 +1,91 @@
+<section id="home-page-featured-section">
+
+  <div class="half-container">
+  
+    <div class="half-img" style="background-image: url('{{ section.settings.image-picker | img_url: 'master' }}');">
+      
+      <!--<img src="{{ section.settings.image-picker | img_url: 'master' }}">-->
+      
+    </div>
+    
+    <div class="half-text" style="background-image: url('{{ section.settings.bg-image-picker | img_url: 'master' }}');">
+       <div class="feature-product-text">
+      		<h2 style="color:{{ section.settings.text_color }};"> {{ section.settings.section-title }} </h2>
+        </div>
+        <a href="{{ section.settings.link }}" class="btn-link link-blue link-half tab"> <span>{{ section.settings.linktext }}</span> </a>
+    </div>
+    
+  </div>
+
+</section>
+<style>
+.btn-link.link-half {
+	background-color: {{ section.settings.button_color }};
+	color: {{ section.settings.button_text_color }};
+}
+
+.btn-link.link-half:before { background-color: {{ section.settings.button_color }}; }
+
+.btn-link.link-half:after { border-top-color: {{ section.settings.button_color }}; }
+  
+</style>
+
+{% schema %}
+  {
+    "name": "Half Half",
+    "settings": [
+        {
+          "id": "image-picker",
+          "type": "image_picker",
+          "label": "Background Image"
+        },
+		{
+          "id": "section-title",
+          "type": "text",
+          "label": "Heading",
+          "default": "Title"
+		},
+		{
+           "type": "color",
+           "id": "text_color",
+           "label": "Text color",
+           "default": "#1057e9"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "linktext",
+          "type": "text",
+          "label": "Button text",
+          "default": "Click here"
+        },
+        {
+           "type": "color",
+           "id": "button_color",
+           "label": "Button Background Color",
+           "default": "#1057e9"
+        },
+		{
+          "id": "bg-image-picker",
+          "type": "image_picker",
+          "label": "Background Image Pattern"
+        }
+	],
+	"presets": [
+		{
+    		"name": "Half Half",
+    		"category": "Home"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

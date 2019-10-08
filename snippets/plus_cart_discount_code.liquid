@@ -1,0 +1,29 @@
+
+{% if plus_cart_discount_code %} 
+<script> 
+(function($) { 
+  $(document).on('page:load page:change', function () {  
+    if (localStorage.getItem('storedDiscount')){  
+      var discountStored = localStorage.getItem('storedDiscount');   
+      $('input[name="discount"]').val(localStorage.getItem('storedDiscount'));  
+    }  
+    $('form[action="/cart"]').on('submit', function(){ 
+      var $discountCode = $('input[name="discount"]').val(); 
+      localStorage.setItem('storedDiscount', $discountCode);  
+    });   
+  });   
+})(jQuery);   
+</script> 
+
+
+<div class="discount­code­field promo-div">
+  <p>Have a promotional code?</p>
+  <div class="discount-btn-wrap">
+    <input id="discount-input" autocomplete="off" type="text" name="discount" />
+    <button type="submit" name="checkout" class="btn cart__checkout" id="discount-apply">
+      Apply
+    </button>
+  </div>
+</div> 
+{% endif %}
+

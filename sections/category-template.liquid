@@ -1,0 +1,285 @@
+{%- assign item = section.settings -%}
+
+<div class="cat-hero-wrapper">
+  <div class="hero-text">
+    <h1 class="cat-h1">{{item.hero-header}}</h1>
+    <p>{{item.hero-desc}}</p>
+  </div>
+</div>
+{%- for block in section.blocks -%}
+  {% assign blockitem = block.settings %}
+  <div class="cat-section cat-{{ forloop.index }}" id="{{block.id}}"
+  style="background-image: url({{blockitem.bg-img | img_url: 'master'}})">
+    <div class="cat-left">
+      {%- if blockitem.section-img1 -%}
+      <img class="cat-img" src="{{blockitem.section-img1 | img_url: '600x'}}" alt="{{blockitem.section-img1.alt | escape}}">
+      {%- endif -%}
+    </div>
+    <div class="cat-right">
+      <div class="cat-text">
+        {%- if blockitem.section-header -%}
+        <h1 class="cat-h1" style="color: {{blockitem.font_color}}">{{blockitem.section-header}}</h1>
+        {%- endif -%}
+        {%- if blockitem.section-desc -%}
+        <p style="color: {{blockitem.font_color}}">{{blockitem.section-desc}}</p>
+        {%- endif -%}
+      </div>
+      {%- if blockitem.section-img2 -%}
+      <img class="cat-img" src="{{blockitem.section-img2 | img_url: '600x'}}" alt="{{blockitem.section-img2.alt | escape}}">
+      {%- endif -%}
+    </div>
+  </div>
+{%- endfor -%}
+
+
+
+
+<style>
+.main-content {
+  padding-top: 0px;
+}
+.main-content .wrapper {
+  padding: 0;
+  margin-bottom: 30px;
+}
+.cat-hero-wrapper {
+  background: url('{{item.hero-img | img_url: '800x1024'}}') no-repeat scroll center;
+  background-size: cover;
+  height: 600px;
+  width: 100%;
+}
+.cat-hero-wrapper .hero-text {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(0, -50%);
+}
+.cat-hero-wrapper .hero-text h1{
+  width: 60%;
+  color: {{item.hero_color}};
+  font-size: 3.5rem;
+}
+.cat-hero-wrapper .hero-text p{
+  width: 50%;
+  color: {{item.hero_color}};
+}
+.cat-img {
+  height: 600px;
+  width: 500px;
+  object-fit: cover;
+}
+.cat-h1 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.cat-section {
+  display: flex;
+  justify-content: space-between;
+}
+.cat-left {
+  justify-content: center;
+  width: 50%;
+  display: flex;
+}
+.cat-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.cat-right .cat-img {
+  margin: 0 auto;
+}
+.cat-text {
+  margin: 30px;
+  padding: 15px;
+}
+.cat-text p {
+  width: 60%;
+}
+.cat-1 .cat-h1, .cat-4 .cat-h1 {
+  margin: 30px 0 ;
+}
+.cat-1 {
+  height: 800px;
+  background-repeat: no-repeat;
+  background-size: 90% 100%;
+}
+.cat-2 {
+  height: 800px;
+}
+.cat-2 img.cat-img:first-child {
+  height: 400px;
+}
+.cat-2 .cat-right {
+  justify-content: center;
+}
+.cat-2 .cat-left {
+  justify-content: flex-start;
+}
+.cat-3 {
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 70% 80%;
+}
+.cat-3 .cat-right .cat-text {
+  align-self: flex-end;
+  width: 70%;
+  margin: 100px 0;
+}
+.cat-4 {
+  background-repeat: no-repeat;
+  background-size: 90% 100%;
+}
+
+@media screen and (min-width: 740px) and (max-width: 1024px) {
+  .cat-1, .cat-4 {
+    background-size: cover;
+  }
+  .cat-2 {
+    height: 500px;
+  }
+  .cat-img {
+    height: 500px;
+    width: 350px;
+  }
+  .cat-right .cat-img {
+    margin: 0 0 0 auto;
+  }
+  .cat-text p, .cat-3 .cat-right .cat-text {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 739px) {
+  .cat-hero-wrapper .hero-text {
+    transform: none;
+  }
+  .cat-hero-wrapper {
+    height: 100vh;
+  }
+  .cat-section {
+    flex-direction: column;
+  }
+  .cat-img {
+    height: 600px;
+    width: 400px;
+  }
+  .cat-text p {
+    width: 100%;
+  }
+  .cat-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-left {
+    justify-content: flex-start;
+    width: 100%;
+    display: flex;
+  }
+  .cat-right .cat-img {
+    margin: 0 0 0 auto;
+  }
+  .cat-1 {
+    height: auto;
+    background-size: 100% 100%;
+  }
+  .cat-2 {
+    height: auto;
+  }
+  .cat-3 .cat-right .cat-text {
+    align-self: flex-start;
+    width: 100%;
+    margin: 100px 0;
+  }
+  .cat-3 {
+    background-size: 100% 80%;
+  }
+  .cat-3 .cat-left .cat-img{
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+
+
+{% schema %}
+{
+  "name": "Collections",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero-img",
+      "label": "Image"
+    },
+    {
+     "type": "color",
+     "id": "hero_color",
+     "label": "Font color",
+     "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "hero-header",
+      "label": "Header",
+      "default": "Spring/Summer 2019 Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "hero-desc",
+      "label": "Description",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "col_sections",
+      "name": "Sections",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Section"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg-img",
+          "label": "Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "section-img1",
+          "label": "Image"
+        },
+        {
+         "type": "color",
+         "id": "font_color",
+         "label": "Font color",
+         "default": "#000"
+        },
+        {
+          "type": "text",
+          "id": "section-header",
+          "label": "Header",
+          "default": "About the Collection"
+        },
+        {
+          "type": "textarea",
+          "id": "section-desc",
+          "label": "Description",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+          "type": "image_picker",
+          "id": "section-img2",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,125 @@
+<section id="collections_highlight">
+
+  <div class="half-container">
+  
+    <div class="left">
+      
+      	<a class="img-holder" href="{{ section.settings.link_left }}">
+        	<img src="{{ section.settings.image-picker_left | img_url: 'master' }}">
+        </a>
+      
+        <div class="text-section">
+            <span class="eyebrow header_7"> {{ section.settings.section-eyebrow_left }} </span>
+      		<h3 class="header_3"> {{ section.settings.section-title_left }} </h3>
+            <a href="{{ section.settings.link_left }}" > {{ section.settings.linktext_left }} <span>{{ section.settings.linktext_Bold_left }}</span> </a>
+        </div>
+      
+    </div>
+    
+    <div class="right">
+      
+      	<a class="img-holder" href="{{ section.settings.link_right }}">
+        	<img src="{{ section.settings.image-picker_right | img_url: 'master' }}">
+        </a>
+      
+        <div class="text-section">
+            <span class="eyebrow header_7 "> {{ section.settings.section-eyebrow_right }} </span>
+      		<h3 class="header_3"> {{ section.settings.section-title_right }} </h3>
+            <a href="{{ section.settings.link_right }}" > {{ section.settings.linktext_right }} <span>{{ section.settings.linktext_Bold_right }}</span> </a>
+        </div>
+      
+    </div>
+    
+  </div>
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Collections Highlight",
+    "settings": [
+		{
+          "id": "image-picker_left",
+          "type": "image_picker",
+          "label": "Image - Left"
+        },
+		{
+          "id": "section-eyebrow_left",
+          "type": "text",
+          "label": "Eyebrow",
+          "default": "Eyebrow Text - Left"
+		},
+		{
+          "id": "section-title_left",
+          "type": "text",
+          "label": "Heading",
+          "default": "Title - Left"
+		},
+        {
+          "id": "link_left",
+          "type": "url",
+          "label": "Button link - Left"
+        },
+        {
+          "id": "linktext_left",
+          "type": "text",
+          "label": "Button text - Left",
+          "default": "Click here"
+        },
+        {
+          "id": "linktext_Bold_left",
+          "type": "text",
+          "label": "Button text Bold - Left",
+          "default": "Click here"
+        },
+        {
+          "id": "image-picker_right",
+          "type": "image_picker",
+          "label": "Image - Right"
+        },
+		{
+          "id": "section-eyebrow_right",
+          "type": "text",
+          "label": "Eyebrow",
+          "default": "Eyebrow Text - Right"
+		},
+		{
+          "id": "section-title_right",
+          "type": "text",
+          "label": "Heading",
+          "default": "Title - Right"
+		},
+        {
+          "id": "link_right",
+          "type": "url",
+          "label": "Button link - Right"
+        },
+        {
+          "id": "linktext_right",
+          "type": "text",
+          "label": "Button text - Right",
+          "default": "Click here"
+        },
+        {
+          "id": "linktext_Bold_right",
+          "type": "text",
+          "label": "Button text Bold - Right",
+          "default": "Click here"
+        }
+	],
+	"presets": [
+		{
+    		"name": "Collections Highlight",
+    		"category": "Home"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

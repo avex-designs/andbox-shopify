@@ -1,0 +1,133 @@
+<div class="login register-wrap-flex">
+  <div class="login-col-register" style="min-height: 100vh; background: url({{section.settings.login-col-bg | img_url:'master'}}); background-size: cover; background-position: center center">
+  </div>
+
+  <div class="login-col-2">
+     <div class="login-cred register-cred">
+      <h2 class="login-header register-header">Create An Account</h2>
+       <p class="register-signup">Sign up and meet your Andbox matches immediately. It only takes a minute!</p>
+       <div class="note form-success" id="ResetSuccess" style="display:none;">
+      {{ 'customer.recover_password.success' | t }}
+      </div>
+
+      {% form 'create_customer' %}
+          {{ form.errors | default_errors }}
+
+        <input type="hidden" name="form_type" value="create_customer">
+        <input type="hidden" name="utf8" value="✓">
+
+
+       		<div class="register-flex">
+            <div class="register-col">
+            <label for="FirstName" class="login-labels">
+             <input type="text" name="customer[first_name]" id="FirstName" class="login-inputs input-full" placeholder=" " autocapitalize="words" autofocus="">
+              <span class="login-labels-span">First Name</span>
+          	</label>
+            <label for="LastName" class="login-labels">
+              <input type="text" name="customer[last_name]" id="LastName" class="login-inputs input-full" placeholder=" " autocapitalize="words">
+              <span class="login-labels-span">Last Name</span>
+            </label>
+          </div>
+          <label for="Email" class="login-labels" style="width: 100%; padding: 0px 2.5px; margin: 20px 0px;">
+            <input type="email" name="customer[email]" id="Email" class="login-inputs input-full" placeholder=" " autocorrect="off" autocapitalize="off">
+            <span class="login-labels-span">Email</span>
+          </label>
+
+          <div class="register-col">
+            <label for="CreatePassword" class="login-labels">
+              <input type="password" name="customer[password]" id="CreatePassword" class="login-inputs input-full create-pass" placeholder=" ">
+              <span class="login-labels-span">Password</span>
+             </label>
+            <label for="CreatePassword" class="login-labels">
+              <input type="password" name="customer[password_confirmation]" placeholder=" " class="login-inputs input-full confirm-pass" id="customer_password_confirmation">
+              <span class="login-labels-span">Confirm Password</span>
+             </label>
+          </div>
+
+       		</div>
+
+          <button class="login-btn btn-link" type="submit" style="margin-top:2rem">
+            <span>Next</span>
+       	  </button>
+
+        	<p class="register-terms">By signing up I agree to the Terms and Conditions</p>
+
+          {% if form.password_needed %}
+              <div class="pw-div">
+                  <label class="login-labels" for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+                  <input type="password" value="" name="customer[password]" id="CustomerPassword" class="login-inputs input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.login.password' | t }}">
+             </div>
+          {% endif %}
+     {%endform%}
+
+    {% if shop.checkout.guest_login %}
+      <hr class="hr--clear">
+
+      <h1>{{ 'customer.login.guest_title' | t }}</h1>
+      <hr class="hr--small">
+      {% form 'guest_login' %}
+        <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+      {% endform %}
+    {% endif %}
+     </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Register",
+    "settings": [
+		{
+			"id": "login-col-bg",
+			"type": "image_picker",
+			"label": "Login Background Image"
+		}
+	]
+  }
+{% endschema %}
+<script>
+
+  document.getElementById('create_customer').addEventListener("submit",function validatePasswords(event) {
+
+  // Query password inputs via currentTarget (this form)
+  var password = event.currentTarget.querySelector(".create-pass").value;
+  var password_confirm = event.currentTarget.querySelector(".confirm-pass").value;
+
+  if (password != password_confirm) {
+    alert("Your passwords do not match.");
+    document.querySelector(".create-pass").style.borderColor = "#E34234";
+    document.querySelector(".confirm-pass").style.borderColor = "#E34234";
+
+    // If validation fails, prevent submit
+    event.preventDefault();
+  }
+})
+
+// function checkPassword(event) {
+//   let password1 = $(".create-pass").val();
+//   let password2 = $(".confirm-pass").val();
+//   // If password not entered
+//   if (password1 == '')
+//     alert ("Please enter Password");
+//     return false;
+//     event.preventDefault();
+
+//   // If confirm password not entered
+//   else if (password2 == '')
+//   alert ("Please enter confirm password");
+//   return false;
+//   event.preventDefault();
+
+//   // If Not same return False.
+//   else if (password1 != password2) {
+//       alert ("\nPassword did not match: Please try again...")
+//       return false;
+//       event.preventDefault();
+//   }
+
+//   // If same return True.
+//   else{
+//       return true;
+//   }
+// }
+</script>
