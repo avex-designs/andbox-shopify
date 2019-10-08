@@ -1,8 +1,9 @@
 <!-- /sections/collection-highlights.liquid -->
+{%- assign item = section.settings -%}
 <div id="CollectionSection" data-section-id="{{ section.id }}" data-section-type="collection-template" data-grid-type="{{ section.settings.collection_products_grid }}">
-  {%- assign collection = collections[section.settings.collection] -%}
+  {%- assign collection = collections[item.collection] -%}
   <header class="section-header text-center">
-    <h1 class="header_2">{{ section.settings.heading }}</h1>
+    <h1 class="header_2" style="color: {{item.heading_color}};">{{ item.heading }}</h1>
   </header>
   <div class="grid-uniform">
     {% assign grid_item_width = 'medium--one-half large--one-third' %}
