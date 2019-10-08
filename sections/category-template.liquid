@@ -1,40 +1,47 @@
-{%- assign item = section.settings -%}
+<!-- /sections/category-template.liquid -->
+{% comment %}
+This is the for Pages: Collections
+{% endcomment %}
 
-<div class="cat-hero-wrapper">
-  <div class="hero-text">
-    <h1 class="cat-h1">{{item.hero-header}}</h1>
-    <p>{{item.hero-desc}}</p>
-  </div>
-</div>
-{%- for block in section.blocks -%}
-  {% assign blockitem = block.settings %}
-  <div class="cat-section cat-{{ forloop.index }}" id="{{block.id}}"
-  style="background-image: url({{blockitem.bg-img | img_url: 'master'}})">
-    <div class="cat-left">
-      {%- if blockitem.section-img1 -%}
-      <img class="cat-img" src="{{blockitem.section-img1 | img_url: '600x'}}" alt="{{blockitem.section-img1.alt | escape}}">
-      {%- endif -%}
+{%- assign item = section.settings -%}
+<div id="{{section.id}}">
+  <div class="cat-hero-wrapper">
+    <div class="hero-text">
+      <h1 class="cat-h1">{{item.hero-header}}</h1>
+      <p>{{item.hero-desc}}</p>
     </div>
-    <div class="cat-right">
-      <div class="cat-text">
-        {%- if blockitem.section-header -%}
-        <h1 class="cat-h1" style="color: {{blockitem.font_color}}">{{blockitem.section-header}}</h1>
-        {%- endif -%}
-        {%- if blockitem.section-desc -%}
-        <p style="color: {{blockitem.font_color}}">{{blockitem.section-desc}}</p>
+  </div>
+
+  {%- for block in section.blocks -%}
+    {% assign blockitem = block.settings %}
+    <div class="cat-section cat-{{ forloop.index }}" id="{{block.id}}"
+    style="background-image: url({{blockitem.bg-img | img_url: 'x1024'}})">
+      <div class="cat-left">
+        {%- if blockitem.section-img1 -%}
+        <img class="cat-img" src="{{blockitem.section-img1 | img_url: '800x'}}" alt="{{blockitem.section-img1.alt | escape}}">
         {%- endif -%}
       </div>
-      {%- if blockitem.section-img2 -%}
-      <img class="cat-img" src="{{blockitem.section-img2 | img_url: '600x'}}" alt="{{blockitem.section-img2.alt | escape}}">
-      {%- endif -%}
+      <div class="cat-right">
+        <div class="cat-text">
+          {%- if blockitem.section-header -%}
+          <h1 class="cat-h1" style="color: {{blockitem.font_color}}">{{blockitem.section-header}}</h1>
+          {%- endif -%}
+          {%- if blockitem.section-desc -%}
+          <p style="color: {{blockitem.font_color}}">{{blockitem.section-desc}}</p>
+          {%- endif -%}
+        </div>
+        {%- if blockitem.section-img2 -%}
+        <img class="cat-img" src="{{blockitem.section-img2 | img_url: '800x'}}" alt="{{blockitem.section-img2.alt | escape}}">
+        {%- endif -%}
+      </div>
     </div>
-  </div>
-{%- endfor -%}
-
-
-
+  {%- endfor -%}
+</div>
 
 <style>
+#category-template {
+  margin-bottom: 60px;
+}
 .main-content {
   padding-top: 0px;
 }
@@ -43,16 +50,15 @@
   margin-bottom: 30px;
 }
 .cat-hero-wrapper {
-  background: url('{{item.hero-img | img_url: '800x1024'}}') no-repeat scroll center;
+  background: url('{{item.hero-img | img_url: '1024x'}}') no-repeat scroll center;
   background-size: cover;
-  height: 600px;
+  height: 100vh;
   width: 100%;
 }
 .cat-hero-wrapper .hero-text {
   position: absolute;
   top: 50%;
   left: 10%;
-  transform: translate(0, -50%);
 }
 .cat-hero-wrapper .hero-text h1{
   width: 60%;
@@ -151,8 +157,14 @@
   }
 }
 @media screen and (max-width: 739px) {
-  .cat-hero-wrapper .hero-text {
-    transform: none;
+  #category-template {
+    margin-bottom: 40px;
+  }
+  .cat-hero-wrapper .hero-text h1 {
+    font-size: 2rem;
+  }
+  .cat-hero-wrapper .hero-text p {
+    width: 90%;
   }
   .cat-hero-wrapper {
     height: 100vh;
@@ -161,8 +173,8 @@
     flex-direction: column;
   }
   .cat-img {
-    height: 600px;
-    width: 400px;
+    height: 500px;
+    width: 300px;
   }
   .cat-text p {
     width: 100%;
@@ -197,7 +209,6 @@
   }
   .cat-3 .cat-left .cat-img{
     width: 100%;
-    height: auto;
   }
 }
 </style>

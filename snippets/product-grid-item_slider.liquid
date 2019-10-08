@@ -1,4 +1,4 @@
-<!-- /snippets/product-grid-item.liquid -->
+<!-- /snippets/product-grid-item_slider.liquid -->
 {% comment %}
 
   This snippet is used to showcase each product during the loop,
@@ -38,20 +38,20 @@
 {%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
 <div class="product_item_wrapper grid-product {% if sold_out %} is-sold-out{% endif %}" data-product-card>
-  
+
   <div class="grid-product__wrapper">
-    
+
     <div class="grid-product__image-wrapper">
       <a class="grid-product__image-link{% unless product.featured_image.src == blank %} grid-product__image-link--loading{% endunless %}" href="{{ product.url | within: collection }}" data-image-link>
         {% if product.featured_image.src == blank %}
-        
+
           <div id="{{ img_wrapper_id }}" class="product--wrapper">
             <div style="padding-top:137.25%;">
               <img class="grid-product__image product--image lazyload" src="{{ product.featured_image.src | img_url: '1024x' }}" alt="{{ product.featured_image.alt | escape }}">
         	</div>
           </div>
         {% else %}
-        
+
           <div id="{{ img_wrapper_id }}" class="product--wrapper">
             <div style="padding-top:137.25%;">
               <img class="product--image lazyload {{ img_id_class }}"
@@ -66,7 +66,7 @@
           <noscript>
             <img class="grid-product__image" src="{{ product.featured_image.src | img_url: '1024x' }}" alt="{{ product.featured_image.alt | escape }}">
           </noscript>
-        
+
         {% endif %}
       </a>
       {% if sold_out %}
@@ -79,7 +79,7 @@
           <p>{{ 'products.general.save_html' | t: saved_amount: saved_amount }}</p>
         </div>
       {% endif %}
-      
+
 
       {% comment %}
       { unless sold_out }
@@ -114,7 +114,7 @@
       { endunless }
       {% endcomment %}
 
-      
+
     </div>
 
     <div class="collections-meta-container">
@@ -143,9 +143,9 @@
           {% endif %}
         </a>
 
-       {% include "panda-swatch" %} 
+       {% include "panda-swatch" %}
     </div>
-    
+
   </div>
-  
+
 </div>
