@@ -3742,8 +3742,8 @@ var afterResize = (function () {
   };
 })();
 
-/* Deactivate first available variant by default */
 $(document).ready(function() {
+  /* Deactivate first available variant by default */
   if( typeof(productOptions ) != "undefined" ){
     for(i=0;i<productOptions.length;i++) {
       $('.single-option-selector:eq('+ i +')')
@@ -3755,4 +3755,9 @@ $(document).ready(function() {
       .trigger('change');
     }
   }
+
+  /* Toggle search bar in header */
+  $('.open-search').click(function(){
+    $('.site-nav__header-search').slideToggle("slow")
+  })
 });

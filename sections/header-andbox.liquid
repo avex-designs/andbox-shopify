@@ -15,6 +15,9 @@
     {% include 'drawer-menu' %}
   </div>
   <div class="header-container drawer__header-container">
+    <div class="site-nav__header-search">
+      {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--header' %}
+    </div>
     <div class="header-wrapper hero__header">
       {% if section.settings.show_announcement %}
         {% if section.settings.home_page_only == false or template.name == 'index' %}
@@ -58,11 +61,11 @@
       {% endif %}
 
       <header class="site-header{% if template.name == 'index' %} hero--color-0{% endif %}" role="banner">
-        
+
         <div class="wrapper">
-          
+
           <div class="header_content_container">
-            
+
             <div class="large--hide">
               <div class="mob-first-row">
               <div class="site-nav--open site-nav--mobile">
@@ -73,8 +76,8 @@
                   <span class="fallback-text">{{ 'general.drawers.navigation' | t }}</span>
                 </button>
               </div>
-              
-              <a href="/search" class="site-nav__link site-nav__link--icon{% if search_modal %} js-toggle-search-modal{% endif %}" data-mfp-src="#SearchModal">
+
+              <a class="site-nav__link site-nav__link--icon open-search">
                 {{ 'search-icon.svg' | file_url | img_tag }}
                 <span class="icon-fallback-text">
                   <!--<span class="icon icon-search" aria-hidden="true"></span>-->
@@ -83,7 +86,7 @@
               </a>
               </div> <!-- / mob first row -->
             </div> <!--// MOBILE NAV BUTTON -->
-            
+
             <div class="header_logo_wrap">
 
               {% if template.name == 'index' %}
@@ -150,9 +153,9 @@
                 </div>
               {% endif %}
             </div> <!-- // LOGO WOGO -->
-            
+
             <nav id="main_nav" class="nav-menu-wrapper medium-down--hide" role="navigation">
-              
+
               <!-- begin site-nav -->
               <ul class="site-nav" id="AccessibleNav">
                 {% for link in linklists[section.settings.main_menu_link_list].links %}
@@ -241,7 +244,7 @@
 
               </ul> <!-- // MAIN MENU site-nav -->
             </nav>
-            
+
             <nav id="utility_nav" class="nav-menu-wrapper medium-down--hide" role="navigation">                     <!-- begin site-nav -->
               <ul class="site-nav" id="Utility_Nav">
                 {% comment %}
@@ -251,14 +254,14 @@
                     {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--header' %}
                   </li>
                 {% endcomment %}
-                
+
                 {% if section.settings.search == 'page' or section.settings.search == 'modal' %}
                   {% assign search_modal = true %}
                   {% if section.settings.search == 'page' %}
                     {% assign search_modal = false %}
                   {% endif %}
                   <li class="site-nav__item site-nav__item--compressed">
-                    <a href="/search" class="site-nav__link site-nav__link--icon{% if search_modal %} js-toggle-search-modal{% endif %}" data-mfp-src="#SearchModal">
+                    <a class="site-nav__link site-nav__link--icon open-search" >
                       {{ 'search-icon.svg' | file_url | img_tag }}
                       <span class="icon-fallback-text">
                         <!--<span class="icon icon-search" aria-hidden="true"></span>-->
@@ -267,8 +270,8 @@
                     </a>
                   </li>
                 {% endif %}
-                
-                
+
+
                 {% if shop.customer_accounts_enabled %}
                   <li class="site-nav__item site-nav__expanded-item site-nav__item--compressed">
                     <a class="site-nav__link site-nav__link--icon" href="/account">
@@ -299,12 +302,12 @@
                 </li>
 
               </ul> <!-- // UTILITY NAV site-nav -->
-              
+
             </nav> <!-- <nav>-->
-            
+
             <div class="large--hide">
               <div class="site-nav--mobile text-right">
-                
+
                 {% if shop.customer_accounts_enabled %}
                 <a class="site-nav__link site-nav__link--icon" href="/account">
                   {{ 'customer-icon.svg' | file_url | img_tag }}
@@ -320,7 +323,7 @@
                   </span>
                 </a>
                 {% endif %}
-                
+
                 <a href="/cart" class="site-nav__link cart-link js-drawer-open-button-right" aria-controls="CartDrawer">
                   <span class="icon-fallback-text">
                     <span class="icon icon-cart" aria-hidden="true"></span>
@@ -330,11 +333,11 @@
                 </a>
               </div>
             </div>
-            
+
           </div>
 
         </div><!-- wrapper -->
-        
+
       </header>
     </div>
   </div>

@@ -28,15 +28,11 @@
         <hr class="hr--small">
       </header>
 
-      {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--page' %}
-
       {% if search.performed %}
 
-        <hr class="hr--medium hr--clear">
 
         <div class="grid-uniform">
           {% for item in search.results %}
-
             {% if item.object_type == 'product' %}
               {% assign product = item %}
               {% include 'product-grid-item' %}
@@ -52,16 +48,18 @@
                 </div>
               </div>
             {% endif %}
-
           {% endfor %}
         </div>
 
         {% if paginate.pages > 1 %}
           {% include 'pagination' %}
         {% endif %}
-
+      {%- else -%}
+      <div class="search-box">
+        {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--header' %}
+      </div>
       {% endif %}
-
+    <hr class="hr--medium hr--clear">
     </div>
   </div>
 
