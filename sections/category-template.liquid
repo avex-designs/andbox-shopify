@@ -1,7 +1,7 @@
 <!-- /sections/category-template.liquid -->
 {% comment %}
 This is the for Pages: Collections
-Not ot be confused with Collection Page 
+Not ot be confused with Collection Page
 {% endcomment %}
 
 {%- assign item = section.settings -%}
@@ -15,8 +15,9 @@ Not ot be confused with Collection Page
 
   {%- for block in section.blocks -%}
     {% assign blockitem = block.settings %}
-    <div class="cat-section cat-{{ forloop.index }}" id="{{block.id}}"
-    style="background-image: url({{blockitem.bg-img | img_url: 'x1024'}})">
+    <div class="cat-section cat-{{ forloop.index }}" id="{{block.id}}">
+    <div class="cat-bg" style="background-image: url({{blockitem.bg-img | img_url: 'x1024'}})">
+    </div>
       <div class="cat-left">
         {%- if blockitem.section-img1 -%}
         <img class="cat-img" src="{{blockitem.section-img1 | img_url: '800x'}}" alt="{{blockitem.section-img1.alt | escape}}">
@@ -29,6 +30,9 @@ Not ot be confused with Collection Page
           {%- endif -%}
           {%- if blockitem.section-desc -%}
           <p style="color: {{blockitem.font_color}}">{{blockitem.section-desc}}</p>
+          {%- endif -%}
+          {%- if blockitem.section-add-desc -%}
+          <p class="header_7" style="color: {{blockitem.font_color}}">{{blockitem.section-add-desc}}</p>
           {%- endif -%}
         </div>
         {%- if blockitem.section-img2 -%}
@@ -83,19 +87,28 @@ Not ot be confused with Collection Page
 .cat-section {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .cat-left {
   justify-content: center;
   width: 50%;
   display: flex;
+  z-index: 1;
 }
 .cat-right {
   width: 50%;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 .cat-right .cat-img {
   margin: 0 auto;
+}
+.cat-bg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
 }
 .cat-text {
   margin: 30px;
@@ -109,8 +122,11 @@ Not ot be confused with Collection Page
 }
 .cat-1 {
   height: 800px;
+}
+.cat-1 .cat-bg {
   background-repeat: no-repeat;
-  background-size: 90% 100%;
+  background-size: cover;
+  width: 90%
 }
 .cat-2 {
   height: 800px;
@@ -124,24 +140,26 @@ Not ot be confused with Collection Page
 .cat-2 .cat-left {
   justify-content: flex-start;
 }
-.cat-3 {
+.cat-3 .cat-bg{
   background-repeat: no-repeat;
-  background-position: top right;
-  background-size: 70% 80%;
+  right: 0;
+  background-size: cover;
+  width: 70%;
+  height: 80%;
 }
 .cat-3 .cat-right .cat-text {
   align-self: flex-end;
   width: 60%;
   margin: 150px 100px 100px 0;
 }
-.cat-4 {
+.cat-4 .cat-bg {
   background-repeat: no-repeat;
   background-size: 90% 100%;
 }
 
 @media screen and (min-width: 740px) and (max-width: 1024px) {
-  .cat-1, .cat-4 {
-    background-size: cover;
+  .cat-1 .cat-bg{
+    width: 100% !important;
   }
   .cat-2 {
     height: 500px;
@@ -198,20 +216,20 @@ Not ot be confused with Collection Page
   .cat-right .cat-img {
     margin: 0 0 0 auto;
   }
-  .cat-1 {
+  .cat-1, .cat-2 {
     height: auto;
-    background-size: 100% 100%;
   }
-  .cat-2 {
-    height: auto;
+  .cat-bg {
+    height: 100%;
+    width: 100% !important;
   }
   .cat-3 .cat-right .cat-text {
     align-self: flex-start;
     width: 100%;
     margin: 100px 0;
   }
-  .cat-3 {
-    background-size: 100% 80%;
+  .cat-3 .cat-bg{
+    height: 80%;
   }
   .cat-3 .cat-left .cat-img{
     width: 100%;
@@ -289,6 +307,12 @@ Not ot be confused with Collection Page
           "id": "section-desc",
           "label": "Description",
           "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+          "type": "textarea",
+          "id": "section-add-desc",
+          "label": "Additional Text",
+          "default": "-Nelson"
         },
         {
           "type": "image_picker",

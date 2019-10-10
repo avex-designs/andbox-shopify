@@ -130,7 +130,7 @@
           "logo-inverted": "",
           "logo_max_width": "180",
           "search": "modal",
-          "main_menu_link_list": "main-menu",
+          "main_menu_link_list": "test-nav",
           "drawer_bottom_link_list": "footer",
           "drawer_search_enable": false,
           "show_announcement": false,
@@ -307,6 +307,63 @@
         "type": "register",
         "settings": {
           "login-col-bg": "shopify:\/\/shop_images\/login-blue_fdd08b5e-40b5-4352-9397-7b033a259a03.png"
+        }
+      },
+      "category-template": {
+        "type": "category-template",
+        "blocks": {
+          "1570464494914": {
+            "type": "col_sections",
+            "settings": {
+              "bg-img": "shopify:\/\/shop_images\/Andbox-Blue-Watermark.jpg",
+              "section-img1": "shopify:\/\/shop_images\/blackout.png",
+              "font_color": "#ffffff",
+              "section-header": "About the <br> Collection",
+              "section-desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+              "section-img2": "shopify:\/\/shop_images\/andbox_5d79b339-377a-4591-ac68-4b12ad1c0fa0.png"
+            }
+          },
+          "1570464517995": {
+            "type": "col_sections",
+            "settings": {
+              "bg-img": "shopify:\/\/shop_images\/Watermark_bg.jpg",
+              "section-img1": "shopify:\/\/shop_images\/hero-image.jpg",
+              "font_color": "#e534ff",
+              "section-header": "Another Header",
+              "section-desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
+              "section-img2": ""
+            }
+          },
+          "1570464583672": {
+            "type": "col_sections",
+            "settings": {
+              "bg-img": "shopify:\/\/shop_images\/login-blue_fdd08b5e-40b5-4352-9397-7b033a259a03.png",
+              "section-img1": "shopify:\/\/shop_images\/Copy_of_190719_AB001_1838.jpg",
+              "font_color": "#ffffff",
+              "section-header": "\"Here's a quote from a guy that's exciting\"",
+              "section-desc": "- That Guy",
+              "section-img2": "shopify:\/\/shop_images\/andbox_carousel-001.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "1570464494914",
+          "1570464517995",
+          "1570464583672"
+        ],
+        "settings": {
+          "hero-img": "shopify:\/\/shop_images\/Shopify-carousel002.jpg",
+          "hero_color": "#fff",
+          "hero-header": "Jjonak Collection",
+          "hero-desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        }
+      },
+      "collection-highlights": {
+        "type": "collection-highlights",
+        "settings": {
+          "heading": "Collection Highlights",
+          "heading_color": "#000000",
+          "collection": "women"
         }
       }
     },
