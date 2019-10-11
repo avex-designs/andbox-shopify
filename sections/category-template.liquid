@@ -19,9 +19,25 @@ Not ot be confused with Collection Page
     <div class="cat-bg" style="background-image: url({{blockitem.bg-img | img_url: 'x1024'}})">
     </div>
       <div class="cat-left">
-        {%- if blockitem.section-img1 -%}
-        <img class="cat-img" src="{{blockitem.section-img1 | img_url: '800x'}}" alt="{{blockitem.section-img1.alt | escape}}">
-        {%- endif -%}
+        <div class="img-wrapper">
+          {%- if blockitem.section-img1 -%}
+          <img class="cat-img" src="{{blockitem.section-img1 | img_url: '800x'}}" alt="{{blockitem.section-img1.alt | escape}}">
+          {%- endif -%}
+          {%- if blockitem.link1 -%}
+          <div class="cat-btn link-wrapper">
+            <a  class="btn-link white">
+              <span>{{ blockitem.linktext1 }}</span>
+            </a>
+          </div>
+          <div class="img-product-overlay">
+            <div class="link-wrapper">
+              <a href="{{ blockitem.link1 }}" class="btn-link white">
+                <span>View Product</span>
+              </a>
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
       </div>
       <div class="cat-right">
         <div class="cat-text">
@@ -35,9 +51,25 @@ Not ot be confused with Collection Page
           <p class="header_7" style="color: {{blockitem.font_color}}">{{blockitem.section-add-desc}}</p>
           {%- endif -%}
         </div>
-        {%- if blockitem.section-img2 -%}
-        <img class="cat-img" src="{{blockitem.section-img2 | img_url: '800x'}}" alt="{{blockitem.section-img2.alt | escape}}">
-        {%- endif -%}
+        <div class="img-wrapper">
+          {%- if blockitem.section-img2 -%}
+          <img class="cat-img" src="{{blockitem.section-img2 | img_url: '800x'}}" alt="{{blockitem.section-img2.alt | escape}}">
+          {%- endif -%}
+          {%- if blockitem.link2 -%}
+          <div class="cat-btn link-wrapper">
+            <a class="btn-link white">
+              <span>{{ blockitem.linktext2 }}</span>
+            </a>
+          </div>
+          <div class="img-product-overlay">
+            <div class="link-wrapper">
+              <a href="{{ blockitem.link2 }}" class="btn-link white">
+                <span>View Product</span>
+              </a>
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
       </div>
     </div>
   {%- endfor -%}
@@ -104,6 +136,46 @@ Not ot be confused with Collection Page
 .cat-right .cat-img {
   margin: 0 auto;
 }
+.img-product-overlay:hover {
+  opacity: 1;
+}
+.img-product-overlay {
+  opacity: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  transition: all 0.3s;
+}
+.img-product-overlay .link-wrapper {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.img-wrapper {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+}
+.img-wrapper .cat-btn.link-wrapper {
+  position: absolute;
+  bottom: 0;
+}
+.cat-btn.link-wrapper .btn-link{
+  height: auto;
+}
+.cat-btn.link-wrapper .btn-link::before {
+  margin-top: .75rem;
+  top: 0;
+}
+.cat-btn.link-wrapper .btn-link::after {
+  border-right: none;
+  transform: rotate(180deg);
+  border-left: .75rem solid transparent;
+  top: 0;
+}
 .cat-bg {
   height: 100%;
   width: 100%;
@@ -124,8 +196,7 @@ Not ot be confused with Collection Page
   height: 800px;
 }
 .cat-1 .cat-bg {
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: repeat;
   width: 90%
 }
 .cat-2 {
@@ -141,9 +212,8 @@ Not ot be confused with Collection Page
   justify-content: flex-start;
 }
 .cat-3 .cat-bg{
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   right: 0;
-  background-size: cover;
   width: 70%;
   height: 80%;
 }
@@ -291,6 +361,17 @@ Not ot be confused with Collection Page
           "label": "Image"
         },
         {
+          "id": "link1",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "linktext1",
+          "type": "text",
+          "label": "Button text",
+          "default": "Click here"
+        },
+        {
          "type": "color",
          "id": "font_color",
          "label": "Font color",
@@ -318,6 +399,17 @@ Not ot be confused with Collection Page
           "type": "image_picker",
           "id": "section-img2",
           "label": "Image"
+        },
+        {
+          "id": "link2",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "linktext2",
+          "type": "text",
+          "label": "Button text",
+          "default": "Click here"
         }
       ]
     }

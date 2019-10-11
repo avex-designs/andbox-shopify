@@ -4608,7 +4608,8 @@ button {
 
     &.white {
 		background: #fff;
-        color: #000 !important;
+    border-right: 1px solid #fff;
+    color: #000 !important;
 
         &::before { background-color: #fff; }
       	&::after { border-top-color: #fff; }
@@ -4645,20 +4646,13 @@ button {
     }
 
   @media screen and (max-width: 1023px) {
-
     &.tab {
-        height: 2.5rem;
-        font-size: 10px;
-
-        &::before,
-        &::after {
-          width: 1.5rem;
-        }
-
+      height: 2.5rem;
+      font-size: 10px;
+      &::before, &::after {
+        width: 1.5rem;
+      }
     }
-
-
-
   }
 
 } // slide item links
