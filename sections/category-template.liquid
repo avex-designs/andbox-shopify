@@ -32,7 +32,7 @@ Not ot be confused with Collection Page
           <div class="img-product-overlay">
             <div class="link-wrapper">
               <a href="{{ blockitem.link1 }}" class="btn-link white">
-                <span>View Product</span>
+                <span>{{ blockitem.btntext1 }}</span>
               </a>
             </div>
           </div>
@@ -64,7 +64,7 @@ Not ot be confused with Collection Page
           <div class="img-product-overlay">
             <div class="link-wrapper">
               <a href="{{ blockitem.link2 }}" class="btn-link white">
-                <span>View Product</span>
+                <span>{{ blockitem.btntext2 }}</span>
               </a>
             </div>
           </div>
@@ -368,8 +368,14 @@ Not ot be confused with Collection Page
         {
           "id": "linktext1",
           "type": "text",
-          "label": "Button text",
+          "label": "Caption text",
           "default": "Click here"
+        },
+        {
+          "id": "btntext1",
+          "type": "text",
+          "label": "Button text",
+          "default": "View Product"
         },
         {
          "type": "color",
@@ -408,8 +414,14 @@ Not ot be confused with Collection Page
         {
           "id": "linktext2",
           "type": "text",
-          "label": "Button text",
+          "label": "Caption text",
           "default": "Click here"
+        },
+        {
+          "id": "btntext2",
+          "type": "text",
+          "label": "Button text",
+          "default": "View Product"
         }
       ]
     }
