@@ -151,7 +151,7 @@
                 class="product-single__price{% if current_variant.compare_at_price > current_variant.price %} on-sale{% endif %}"
                 itemprop="price"
                 content="{{ current_variant.price | divided_by: 100.00 }}"
-                {% unless current_variant.available %}aria-hidden="true"{% endunless %}>
+                {% unless current_variant.available %}aria-hidden="false"{% endunless %}>
                 {{ current_variant.price | money }}
               </span>
             </div>

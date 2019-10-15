@@ -1,4 +1,3 @@
-{% assign results_box_width = '242px' %}
 {% assign results_box_background_color = '#ffffff' %}
 {% assign results_box_border_color = '#d4d4d4' %}
 
@@ -8,50 +7,34 @@ $(function() {
   var currentAjaxRequest = null;
   // Grabbing all search forms on the page, and adding a .search-results list to each.
   var searchForms = $('form[action="/search"]').css('position','relative').each(function() {
-    // Grabbing text input.
     var input = $(this).find('input[name="q"]');
-    // Adding a list for showing search results.
-    var offSet = input.position().top + input.innerHeight();
+    var offSet = input.innerHeight();
     $('<ul class="search-results"></ul>').css( { 'position': 'absolute', 'left': '0px', 'top': offSet } ).appendTo($(this)).hide();
-    // Listening to keyup and change on the text field within these search forms.
     input.attr('autocomplete', 'off').bind('keyup change', function() {
-      // What's the search term?
       var term = $(this).val();
-      // What's the search form?
       var form = $(this).closest('form');
-      // What's the search URL?
       var searchURL = '/search?type=product&q=' + term;
-      // What's the search results list?
       var resultsList = form.find('.search-results');
-      // If that's a new term and it contains at least 3 characters.
-      if (term.length > 3 && term != $(this).attr('data-old-term')) {
-        // Saving old query.
+
+      if (term.length > 2 && term != $(this).attr('data-old-term')) {
         $(this).attr('data-old-term', term);
         // Killing any Ajax request that's currently being processed.
         if (currentAjaxRequest != null) currentAjaxRequest.abort();
-        // Pulling results.
         currentAjaxRequest = $.getJSON(searchURL + '&view=json', function(data) {
-          // Reset results.
           resultsList.empty();
-          // If we have no results.
-          if(data.results_count == 0) {
-            // resultsList.html('<li><span class="title">No results.</span></li>');
-            // resultsList.fadeIn(200);
-            resultsList.hide();
+          if(data.results_count === 0) {
+            resultsList.html('<li><span class="title">No results.</span></li>');
+            resultsList.fadeIn(200);
           } else {
-            // If we have results.
             $.each(data.results, function(index, item) {
               var link = $('<a></a>').attr('href', item.url);
               link.append('<span class="thumbnail"><img src="' + item.thumbnail + '" /></span>');
-              link.append('<span class="title">' + item.title + '</span>');
+              link.append(`<span class="title">${item.title}</span>`);
+              link.append(`<span class="price">${item.price}</span>`);
               link.wrap('<li></li>');
               resultsList.append(link.parent());
             });
-            // The Ajax request will return at the most 10 results.
-            // If there are more than 10, let's link to the search results page.
-            if(data.results_count > 10) {
-              resultsList.append('<li><span class="title"><a href="' + searchURL + '">See all results (' + data.results_count + ')</a></span></li>');
-            }
+              resultsList.append('<li><span class="title all-results"><a href="' + searchURL + '">See all results (' + data.results_count + ')</a></span></li>');
             resultsList.fadeIn(200);
           }
         });
@@ -70,7 +53,7 @@ $(function() {
 .search-results {
   z-index: 8889;
   list-style-type: none;
-  width: {{ results_box_width }};
+  width: 100%;
   margin: 0;
   padding: 0;
   background: {{ results_box_background_color }};
@@ -83,34 +66,53 @@ $(function() {
 .search-results li {
   display: block;
   width: 100%;
-  height: 38px;
+  height: auto;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   border-top: 1px solid {{ results_box_border_color }};
-  line-height: 38px;
+  line-height: 45px;
   overflow: hidden;
 }
 .search-results li:first-child {
   border-top: none;
 }
+.search-results li:hover {
+  background: #f3f3f3;
+}
 .search-results .title {
   float: left;
-  width: {{ results_box_width | remove: 'px' | to_number | minus: 50 }}px;
+  width: 65%;
   padding-left: 8px;
   white-space: nowrap;
   overflow: hidden;
   /* The text-overflow property is supported in all major browsers. */  text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   text-align: left;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: .75rem;
+  letter-spacing: -.5px;
+}
+
+.search-results .price {
+  float: right;
+  font-size: 0.75rem;
+  padding-right: 8px;
 }
 .search-results .thumbnail {
   float: left;
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   margin: 3px 0 3px 3px;
   padding: 0;
   text-align: center;
   overflow: hidden;
+}
+.search-results .all-results {
+  width: 100%;
+  padding: 0;
+  text-align: center;
 }
 </style>
