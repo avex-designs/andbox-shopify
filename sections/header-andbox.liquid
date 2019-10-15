@@ -15,9 +15,6 @@
     {% include 'drawer-menu' %}
   </div>
   <div class="header-container drawer__header-container">
-    <div class="site-nav__header-search">
-      {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--header' %}
-    </div>
     <div class="header-wrapper hero__header">
       {% if section.settings.show_announcement %}
         {% if section.settings.home_page_only == false or template.name == 'index' %}
@@ -25,7 +22,6 @@
             .announcement-bar {
               background-color: {{ section.settings.color_bg }};
             }
-
             .announcement-bar--link:hover {
               {% assign brightness = section.settings.color_bg | color_brightness %}
 
@@ -37,7 +33,6 @@
                 background-color: {{ section.settings.color_bg | color_darken: darkenAmount }};
               {% endif %}
             }
-
             .announcement-bar__message {
               color: {{ section.settings.color_text }};
             }
@@ -339,6 +334,9 @@
         </div><!-- wrapper -->
 
       </header>
+      <div class="site-nav__header-search">
+        {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--header' %}
+      </div>
     </div>
   </div>
 </div>

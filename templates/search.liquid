@@ -18,14 +18,14 @@
       <header class="section-header text-center">
         {% if search.performed %}
           {% if search.results_count == 0 %}
-            <h1 class="text-center">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
+            <h1 class="header_2">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
           {% else %}
-            <h1 class="text-center">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
+            <h1 class="header_2">{{ 'general.search.results_for_html' | t: terms: search.terms, length: search.results_count }}</h1>
           {% endif %}
         {% else %}
-          <h1 class="text-center">{{ 'general.search.title' | t }}</h1>
+          <h1 class="header_2">{{ 'general.search.title' | t }}</h1>
         {% endif %}
-        <hr class="hr--small">
+
       </header>
 
       {% if search.performed %}
@@ -35,7 +35,7 @@
           {% for item in search.results %}
             {% if item.object_type == 'product' %}
               {% assign product = item %}
-              {% include 'product-grid-item' %}
+              {% include 'product-grid-item_slider' %}
             {% else %}
               <div class="grid__item grid-search large--one-third medium--one-half">
                 <div class="grid-search__page">

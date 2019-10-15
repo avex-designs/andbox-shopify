@@ -23,7 +23,7 @@
 
 <form action="/search" method="get" class="input-group search-bar {{ search_bar_location }}" role="search">
   {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
-  <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
+  <input id="search_input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
   <span class="input-group-btn">
     <button type="submit" class="search-btn {{ search_btn_style }} icon-fallback-text">
       <span class="icon icon-search" aria-hidden="true"></span>
@@ -31,3 +31,31 @@
     </button>
   </span>
 </form>
+<!--
+<script type="text/javascript">
+function getSearch (event){
+  var term = event.target.value
+  var endpoint = "/search?type=product&q=" + term + '&view=json'
+  console.log(term, endpoint)
+
+  $.getJSON(endpoint, function(data) {
+    var items = []
+    $.each(data.results, function(item) {
+       items.push(item)
+     });
+     console.log(items)
+  }).always(function() {
+    console.log( "complete" );
+  });
+}
+
+function delay(fn, ms) {
+  let timer = 0
+  return function(...args) {
+    clearTimeout(timer)
+    timer = setTimeout(fn.bind(this, ...args), ms || 0)
+  }
+}
+
+$('#search_input').keyup(delay(getSearch, 500));
+</script> -->

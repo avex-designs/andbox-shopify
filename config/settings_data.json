@@ -317,10 +317,15 @@
             "settings": {
               "bg-img": "shopify:\/\/shop_images\/Andbox-Blue-Watermark.jpg",
               "section-img1": "shopify:\/\/shop_images\/blackout.png",
+              "link1": "shopify:\/\/products\/core-camper-nylon-hat",
+              "linktext1": "The JJonak Hoodie <br> feat. art by Maxx242",
               "font_color": "#ffffff",
               "section-header": "About the <br> Collection",
               "section-desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
-              "section-img2": "shopify:\/\/shop_images\/andbox_5d79b339-377a-4591-ac68-4b12ad1c0fa0.png"
+              "section-add-desc": "",
+              "section-img2": "shopify:\/\/shop_images\/andbox_5d79b339-377a-4591-ac68-4b12ad1c0fa0.png",
+              "link2": "shopify:\/\/products\/conversion-jersey",
+              "linktext2": "The JJonak Hoodie <br> feat. art by Maxx242"
             }
           },
           "1570464517995": {
@@ -328,10 +333,15 @@
             "settings": {
               "bg-img": "shopify:\/\/shop_images\/Watermark_bg.jpg",
               "section-img1": "shopify:\/\/shop_images\/hero-image.jpg",
+              "link1": "shopify:\/\/products\/classic-tote",
+              "linktext1": "The JJonak Hoodie <br> feat. art by Maxx242",
               "font_color": "#e534ff",
               "section-header": "Another Header",
               "section-desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
-              "section-img2": ""
+              "section-add-desc": "",
+              "section-img2": "",
+              "link2": "",
+              "linktext2": ""
             }
           },
           "1570464583672": {
@@ -339,10 +349,15 @@
             "settings": {
               "bg-img": "shopify:\/\/shop_images\/login-blue_fdd08b5e-40b5-4352-9397-7b033a259a03.png",
               "section-img1": "shopify:\/\/shop_images\/Copy_of_190719_AB001_1838.jpg",
+              "link1": "shopify:\/\/products\/graph-l-s-tee",
+              "linktext1": "The JJonak Hoodie <br> feat. art by Maxx242",
               "font_color": "#ffffff",
               "section-header": "\"Here's a quote from a guy that's exciting\"",
-              "section-desc": "- That Guy",
-              "section-img2": "shopify:\/\/shop_images\/andbox_carousel-001.jpg"
+              "section-desc": "",
+              "section-add-desc": "-NELSON",
+              "section-img2": "shopify:\/\/shop_images\/andbox_carousel-001.jpg",
+              "link2": "shopify:\/\/products\/copy-of-ws-transfuse-crew-sweatshirt",
+              "linktext2": "The JJonak Hoodie <br> feat. art by Maxx242"
             }
           }
         },
