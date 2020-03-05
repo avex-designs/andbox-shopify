@@ -8,7 +8,7 @@
 
     <div id="new-arrivals" class="owl-carousel owl-theme">
       
-	  {% for product in collections.lookbook.products limit:6 %}
+	  {% for product in collections.all.products limit:6 %}
       
         {% include 'product-grid-item_slider' %}
     
